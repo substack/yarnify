@@ -27,7 +27,7 @@ exports.knit = function (dir, cb) {
 
 var prelude = fs.readFileSync(__dirname + '/browser.js', 'utf8');
 function withFiles (files, cb) {
-    var src = prelude + '\nyarnify.files = '
-        + JSON.stringify(files) + ';\n';
+    var src = "module.exports = require('yarnify')("
+        + JSON.stringify(files) + ');\n';
     cb(null, src);
 }
