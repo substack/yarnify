@@ -35,27 +35,21 @@ now just `require('./yarn')` in a widget/index.js:
 var yarn = require('./yarn');
 
 module.exports = function (title) {
-    var elem = yarn('./beep.html');
-    elem.find('.title').text(title);
+    var frag = yarn('./beep.html');
+    var rootNode = frag.firstChild;
+    rootNode.firstElementChild.textContent = title;
     
-    return {
-        body : function (x) { elem.find('.body').text(x) },
-        appendTo : function (e) { elem.appendTo(e) }
-    };
+    return rootNode
 };
 ```
 
 Now you can use this widget as a module with browserify!
 
 ``` js
-var $ = require('jquery-browserify');
 var widget = require('./widget');
-
-$(function () {
-    var w = widget('robots');
-    w.body('in SPACE!');
-    w.appendTo(document.body);
-});
+var w = widget('robots');
+w.children[1].textContent = 'in SPACE!';
+document.body.appendChild(w);
 ```
 
 If you make a nifty reusable widget that other people could benefit from,
@@ -85,7 +79,7 @@ var yarn = require('./yarn')
 yarn(file)
 ----------
 
-Return a jquery handle on the html content at `file`.
+Return a document fragment of the html content at `file`.
 
 todo
 ====

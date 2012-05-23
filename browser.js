@@ -1,4 +1,4 @@
-var $ = require('jquery-browserify');
+var fragment = require("fragment");
 var path = require('path');
 
 var yarnify = module.exports = function (file) {
@@ -6,5 +6,5 @@ var yarnify = module.exports = function (file) {
     var html = yarnify.files[file_];
     if (!html) return undefined;
     // todo: intelligently bind scoped css
-    return $(html);
+    return fragment(html);
 };

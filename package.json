@@ -13,7 +13,7 @@
     "dependencies" : {
         "findit" : "~0.1.2",
         "optimist" : "~0.3.4",
-        "jquery-browserify" : "~1.7.2"
+        "fragment" : "0.1.0"
     },
     "devDependencies" : {
         "tap" : "~0.2.5"
