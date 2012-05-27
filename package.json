@@ -13,11 +13,12 @@
     },
     "dependencies" : {
         "findit" : "~0.1.2",
-        "optimist" : "~0.3.4",
-        "jquery-browserify" : "~1.7.2"
+        "optimist" : "~0.3.4"
     },
     "devDependencies" : {
-        "tap" : "~0.2.5"
+        "tap" : "~0.2.5",
+        "domready" : "~0.2.11",
+        "browserify" : "~1.10.15"
     },
     "scripts" : {
         "test" : "tap test"

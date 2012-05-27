@@ -7,6 +7,8 @@ exports.knit = function (dir, cb) {
     var pending = 0;
     var done = false;
     
+    var prefix = '_' + Math.random().toString(16).slice(2) + '-';
+    
     finder.on('file', function (file) {
         if (!/\.(html|css)$/.test(file)) return;
         
@@ -16,7 +18,7 @@ exports.knit = function (dir, cb) {
             pending --;
             if (err) return;
             files[shortFile] = src;
-            if (done && pending === 0) withFiles(files, cb);
+            if (done && pending === 0) withFiles(prefix, files, cb);
         });
     });
     
@@ -26,8 +28,11 @@ exports.knit = function (dir, cb) {
 };
 
 var prelude = fs.readFileSync(__dirname + '/browser.js', 'utf8');
-function withFiles (files, cb) {
-    var src = "module.exports = require('yarnify')("
-        + JSON.stringify(files) + ');\n';
+function withFiles (prefix, files, cb) {
+    var src = 'module.exports = require("yarnify")('
+        + JSON.stringify(prefix)
+        + ','
+        + JSON.stringify(files)
+    + ');\n';
     cb(null, src);
 }

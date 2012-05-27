@@ -1,6 +1,6 @@
-var $ = require('jquery-browserify');
+var domready = require('domready');
 
-$(function () {
+domready(function () {
     var widget = require('./widget');
     var w = widget('robots');
     w.body('in SPACE!');
