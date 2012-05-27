@@ -65,9 +65,10 @@ domready(function () {
 });
 ```
 
-Then browserify it:
+Then install domready and browserify everything up:
 
 ```
+$ npm install domready
 $ browserify entry.js -o bundle.js
 ```
 
