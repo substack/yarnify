@@ -15,18 +15,15 @@ module.exports = function (prefix, files) {
     var css = document.createElement('style');
     var cssText = document.createTextNode(cssFiles.join('\n'));
     css.appendChild(cssText);
+    var insertedCss = false;
     
     var y = function (file_, opts) {
         if (!opts) opts = {};
         var file = path.resolve('/', file_);
         var elem = elems[file];
-        if (opts.css !== false) {
-            if (elem.childNodes.length === 0) {
-                elem.appendChild(css);
-            }
-            else {
-                elem.insertBefore(css, elem.firstChild);
-            }
+        if (opts.css !== false && !insertedCss) {
+            document.head.appendChild(css);
+            insertedCss = true;
         }
         return elem;
     };
