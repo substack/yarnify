@@ -1,5 +1,6 @@
 var path = require('path');
 var parse = require('./browser/parse');
+var clone = require('./browser/clone');
 
 module.exports = function (prefix, files) {
     var cssFiles = [];
@@ -21,11 +22,12 @@ module.exports = function (prefix, files) {
         if (!opts) opts = {};
         var file = path.resolve('/', file_);
         var elem = elems[file];
+        
         if (opts.css !== false && !insertedCss) {
             document.head.appendChild(css);
             insertedCss = true;
         }
-        return elem;
+        return clone(elem);
     };
     
     y.parse = function (src) {

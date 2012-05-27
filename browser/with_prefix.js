@@ -1,4 +1,6 @@
 module.exports = function (prefix, elem) {
+    elem.pre = prefix;
+    
     elem.getElementById = function (id) {
         return document.getElementById(prefix + id);
     };

@@ -13,5 +13,5 @@ else
         ln -s ${PWD}/../.. node_modules/yarnify; \
     fi
     browserify entry.js -o bundle.js
-    echo Bundle generated. Do ./make.sh view to open it in a browser.
+    echo 'Bundle generated. Do `./make.sh view` to open it in a browser.'
 fi
