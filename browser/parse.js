@@ -1,4 +1,3 @@
-var withPrefix = require('./with_prefix');
 var fragment = require('fragment');
 
 module.exports = function (prefix, src) {
@@ -19,5 +18,5 @@ module.exports = function (prefix, src) {
         if (id) node.setAttribute('id', prefix + id);
     }
     
-    return withPrefix(prefix, elem);
+    return elem;
 };
