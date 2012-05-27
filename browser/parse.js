@@ -1,10 +1,8 @@
 var withPrefix = require('./with_prefix');
-var createDocument = require('./create_document');
+var fragment = require('fragment');
 
 module.exports = function (prefix, src) {
-    var parsed = createDocument(src);
-    var doc = parsed.document;
-    var elem = parsed.element;
+    var elem = fragment(src);
     
     var nodes = elem.querySelectorAll('*');
     for (var i = 0; i < nodes.length; i++) {
@@ -21,5 +19,5 @@ module.exports = function (prefix, src) {
         if (id) node.setAttribute('id', prefix + id);
     }
     
-    return withPrefix(prefix, parsed);
+    return withPrefix(prefix, elem);
 };

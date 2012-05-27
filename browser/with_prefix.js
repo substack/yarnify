@@ -1,13 +1,10 @@
-module.exports = function (prefix, parsed) {
-    var doc = parsed.document;
-    var elem = parsed.element;
-    
+module.exports = function (prefix, elem) {
     elem.getElementById = function (id) {
-        return doc.getElementById(prefix + id);
+        return document.getElementById(prefix + id);
     };
     
     elem.getElementsByClassName = function (name) {
-        return doc.getElementsByClassName(prefix + name);
+        return document.getElementsByClassName(prefix + name);
     };
     
     var querySelector = elem.querySelector;
