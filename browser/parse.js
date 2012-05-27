@@ -1,7 +1,9 @@
 var fragment = require('fragment');
 
 module.exports = function (prefix, src) {
-    var elem = fragment(src);
+    var frag = fragment(src);
+    var elem = document.createElement('div');
+    elem.appendChild(frag);
     
     var nodes = elem.querySelectorAll('*');
     for (var i = 0; i < nodes.length; i++) {

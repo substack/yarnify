@@ -7,12 +7,11 @@ domready(function () {
     wr.appendTo(document.body);
     
     var wd = widget('dinosaurs');
-    wd.body('WELDING cars');
+    wd.body('extinction');
     wd.appendTo(document.body);
-    wd.body('???');
     
     var ix = 1;
     setInterval(function () {
-        wd.body('WELDING cars ' + Array(ix++).join('.'));
-    }, 1000);
+        wd.body('extinction ' + Array(++ix).join('.'));
+    }, 250);
 });
