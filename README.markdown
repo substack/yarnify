@@ -132,50 +132,57 @@ These are the methods you can call on generated yarn bundles.
 var yarn = require('./yarn')
 ```
 
-var doc = yarn(file)
---------------------
+var elem = yarn(file)
+---------------------
 
 Return a container div with class `_fragment` around the html fragment at
 `file`.
 
 The html fragment is transformed with a prefix value for all classes and IDs, so
 to get at the class and ID names from original file, use the wrapped
-`doc.querySelector()`, `doc.querySelectorAll()`, `doc.getElementById()`,
-or `doc.getElementsByClassName()` methods documented below.
+`elem.querySelector()`, `elem.querySelectorAll()`, `elem.getElementById()`,
+or `elem.getElementsByClassName()` methods documented below.
 
-You can pass the `doc` element to jquery or whichever other DOM manipulation
+You can pass the `elem` to jquery or whichever other DOM manipulation
 toolkit you please, just be aware that the css selector wrapping in those
 libraries won't work as you might expect.
 
-doc.querySelector(selector)
----------------------------
+elem.querySelector(selector)
+----------------------------
 
 Like the standard
 [Element.querySelector](https://developer.mozilla.org/en/DOM/Element.querySelector)
 except that classes and IDs will have the document prefix inserted
 automatically into the selector.
 
-doc.querySelectorAll(selector)
-------------------------------
+elem.querySelectorAll(selector)
+-------------------------------
 
 Like the standard
 [Element.querySelectorAll](https://developer.mozilla.org/en/DOM/Element.querySelectorAll)
 except that classes and IDs will have the document prefix inserted
 automatically into the selector.
 
-doc.getElementById(id)
-----------------------
+elem.getElementById(id)
+-----------------------
 
 Look up an element by its `id` from the original html before prefixing.
 
-This function would normally be available at the `document`, not the
-`documentElement`, but this is a handy place to look up an id with the prefix
-value prepended.
+This function would normally be available at the `document`
+but this is a handy place to look up an id with the prefix value prepended.
 
-doc.getElementsByClassName(name)
---------------------------------
+elem.getElementsByClassName(name)
+---------------------------------
 
 Look up elements by their `class` from the original html before prefixing.
+
+attributes
+==========
+
+elem.pre
+--------
+
+The prefix prepended to all class and id values.
 
 todo
 ====
