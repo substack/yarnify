@@ -7,11 +7,7 @@ module.exports = function (title) {
     return {
         body : function (x) {
             elem.querySelector('.body').textContent = x;
-            return elem;
         },
-        appendTo : function (e) {
-            e.appendChild(elem);
-            return elem;
-        }
+        appendTo : function (e) { e.appendChild(elem) }
     };
 };
