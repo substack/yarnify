@@ -135,7 +135,7 @@ var yarn = require('./yarn')
 var elem = yarn(file)
 ---------------------
 
-Return a container div with class `_fragment` around the html fragment at
+Return a container div with class `_container` around the html fragment at
 `file`.
 
 The html fragment is transformed with a prefix value for all classes and IDs, so

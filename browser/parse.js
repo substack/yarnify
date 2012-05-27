@@ -1,12 +1,10 @@
-var fragment = require('fragment');
-
 module.exports = function (prefix, src) {
-    var frag = fragment(src);
     var elem = document.createElement('div');
-    elem.setAttribute('class', prefix + '_fragment');
-    elem.appendChild(frag);
+    elem.setAttribute('class', prefix + '_container');
+    elem.innerHTML = src;
     
     var nodes = elem.querySelectorAll('*');
+    
     for (var i = 0; i < nodes.length; i++) {
         var node = nodes[i];
         var c = node.getAttribute('class');
