@@ -79,19 +79,19 @@ Just hack up an entry.js:
 
 ``` js
 var domready = require('domready');
+var widget = require('./widget');
 
 domready(function () {
-    var widget = require('./widget');
     var w = widget('robots');
     w.body('in SPACE!');
     w.appendTo(document.body);
 });
 ```
 
-Then install domready and browserify everything up:
+Install domready, a local yarnify, and browserify everything up:
 
 ```
-$ npm install domready
+$ npm install domready yarnify
 $ browserify entry.js -o bundle.js
 ```
 
@@ -135,9 +135,8 @@ var yarn = require('./yarn')
 var doc = yarn(file)
 --------------------
 
-Return the
-[documentElement](https://developer.mozilla.org/en/DOM/document.documentElement)
-for the html fragment at `file`.
+Return a container div with class `_fragment` around the html fragment at
+`file`.
 
 The html fragment is transformed with a prefix value for all classes and IDs, so
 to get at the class and ID names from original file, use the wrapped
