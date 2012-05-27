@@ -181,19 +181,11 @@ Look up elements by their `class` from the original html before prefixing.
 todo
 ====
 
-### transform and bind css
+* knit standalone static assets like images into a target directory:
 
-Add a prefix to every `class` and `id` in the html based on the `package.json`
-`name` field with a fallback to the parent directory name.
-
-### bind css files to html files of the same name
-
-Parse the corresponding css file for each html file
-and also re-run the rules on appended elements.
-
-### knit static assets (images) into a target directory
-
-`cp -r $src/static $dst`
+```
+cp -r $src/static $dst
+```
 
 install
 =======
