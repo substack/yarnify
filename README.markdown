@@ -26,7 +26,10 @@ Just hack up a widget/beep.html:
 </div>
 ```
 
-and write some css for your widget (any filename will do):
+and write some css for your widget, any filename will do.
+
+The class names you pick here will be completely local to your widget so don't
+worry about naming.
 
 ``` css
 .beep {
