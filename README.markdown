@@ -52,6 +52,8 @@ module.exports = function (title) {
 
 Now you can use this widget as a module with browserify!
 
+Just hack up an entry.js:
+
 ``` js
 var domready = require('domready');
 
@@ -61,6 +63,22 @@ domready(function () {
     w.body('in SPACE!');
     w.appendTo(document.body);
 });
+```
+
+Then browserify it:
+
+```
+$ browserify entry.js -o bundle.js
+```
+
+Now you can drop the `bundle.js` into some html:
+
+``` html
+<html>
+<head>
+<script src="bundle.js"></script>
+</head>
+</html>
 ```
 
 If you make a nifty reusable widget that other people could benefit from,
