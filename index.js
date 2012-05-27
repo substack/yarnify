@@ -1,5 +1,6 @@
 var fs = require('fs');
 var findit = require('findit');
+var insertPrefix = require('./lib/insert_prefix');
 
 exports.knit = function (dir, cb) {
     var files = {};
@@ -17,7 +18,11 @@ exports.knit = function (dir, cb) {
         fs.readFile(file, 'utf8', function (err, src) {
             pending --;
             if (err) return;
-            files[shortFile] = src;
+            
+            if (/\.css$/.test(file)) {
+                files[shortFile] = insertPrefix(prefix, src);
+            }
+            else files[shortFile] = src;
             if (done && pending === 0) withFiles(prefix, files, cb);
         });
     });
