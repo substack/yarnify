@@ -1,0 +1,15 @@
+.beep {
+    margin: auto;
+    width: 400px;
+}
+
+.title {
+    font-weight: bold;
+}
+
+.body {
+    padding: 20px;
+    background-color: rgb(48,51,55);
+    color: rgb(220,230,240);
+    border-radius: 10px;
+}

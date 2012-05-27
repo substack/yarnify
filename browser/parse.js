@@ -3,6 +3,7 @@ var fragment = require('fragment');
 module.exports = function (prefix, src) {
     var frag = fragment(src);
     var elem = document.createElement('div');
+    elem.setAttribute('class', prefix + '_fragment');
     elem.appendChild(frag);
     
     var nodes = elem.querySelectorAll('*');
