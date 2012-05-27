@@ -14,7 +14,8 @@
     "dependencies" : {
         "findit" : "~0.1.2",
         "optimist" : "~0.3.4",
-        "cssp" : "~1.0.5"
+        "cssp" : "~1.0.5",
+        "traverse" : "~0.6.1"
     },
     "devDependencies" : {
         "tap" : "~0.2.5",
