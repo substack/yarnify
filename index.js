@@ -1,6 +1,6 @@
 var fs = require('fs');
 var findit = require('findit');
-var insertPrefix = require('./lib/insert_prefix');
+var insertPrefix = require('css-prefix');
 
 exports.knit = function (dir, cb) {
     var files = {};
