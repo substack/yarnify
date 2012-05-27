@@ -26,6 +26,26 @@ Just hack up a widget/beep.html:
 </div>
 ```
 
+and write some css for your widget (any filename will do):
+
+``` css
+.beep {
+    margin: auto;
+    width: 400px;
+}
+
+.title {
+    font-weight: bold;
+}
+
+.body {
+    padding: 20px;
+    background-color: rgb(48,51,55);
+    color: rgb(220,230,240);
+    border-radius: 10px;
+}
+```
+
 then bundle all the html in `widget/` into `widget/yarn.js`:
 
 ```
@@ -81,6 +101,9 @@ Now you can drop the `bundle.js` into some html:
 </head>
 </html>
 ```
+
+Now you have a reusable bundle that won't clobber any class or ID names in the
+webapps where you might want to use the widget!
 
 If you make a nifty reusable widget that other people could benefit from,
 consider releasing it on npm!
