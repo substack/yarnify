@@ -2,14 +2,33 @@ var path = require('path');
 var parse = require('./browser/parse');
 
 module.exports = function (prefix, files) {
-    var elems = Object.keys(files).reduce(function (acc, file) {
-        acc[file] = parse(prefix, files[file]);
-        return acc;
-    }, {});
+    var cssFiles = [];
+    var elems = {};
+    Object.keys(files).forEach(function (file) {
+        if (/\.css$/i.test(file)) {
+            cssFiles.push(files[file]); 
+        }
+        else {
+            elems[file] = parse(prefix, files[file]);
+        }
+    });
+    var css = document.createElement('style');
+    var cssText = document.createTextNode(cssFiles.join('\n'));
+    css.appendChild(cssText);
     
-    var y = function (file) {
-        var file_ = path.resolve('/', file);
-        return elems[file_];
+    var y = function (file_, opts) {
+        if (!opts) opts = {};
+        var file = path.resolve('/', file_);
+        var elem = elems[file];
+        if (opts.css !== false) {
+            if (elem.childNodes.length === 0) {
+                elem.appendChild(css);
+            }
+            else {
+                elem.insertBefore(css, elem.firstChild);
+            }
+        }
+        return elem;
     };
     
     y.parse = function (src) {
