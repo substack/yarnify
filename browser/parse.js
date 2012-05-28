@@ -16,6 +16,9 @@ module.exports = function (prefix, src) {
                 .join(' ')
             );
         }
+        else {
+            node.setAttribute('class', className);
+        }
         
         var id = node.getAttribute('id');
         if (id) node.setAttribute('id', prefix + id);
