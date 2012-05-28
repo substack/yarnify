@@ -20,7 +20,11 @@ exports.knit = function (dir, cb) {
             if (err) return;
             
             if (/\.css$/.test(file)) {
-                files[shortFile] = insertPrefix(prefix, src);
+                var opts = {
+                    prefix : prefix,
+                    elementClass : prefix.slice(0,-1),
+                };
+                files[shortFile] = insertPrefix(opts, src);
             }
             else files[shortFile] = src;
             if (done && pending === 0) withFiles(prefix, files, cb);

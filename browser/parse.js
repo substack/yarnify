@@ -1,5 +1,6 @@
 module.exports = function (prefix, src) {
     var elem = document.createElement('div');
+    var className = prefix.slice(0, -1);
     elem.setAttribute('class', prefix + '_container');
     elem.innerHTML = src;
     
@@ -11,6 +12,7 @@ module.exports = function (prefix, src) {
         if (c) {
             node.setAttribute('class', c.split(/\s+/)
                 .map(function (x) { return  prefix + x })
+                .concat(className)
                 .join(' ')
             );
         }
