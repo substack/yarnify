@@ -21,6 +21,8 @@ module.exports = function (prefix, files) {
     var y = function (file_, opts) {
         if (!opts) opts = {};
         var file = path.resolve('/', file_);
+        if (!elems[file]) return undefined;
+        
         var elem = withPrefix(prefix, elems[file].cloneNode(true));
         
         if (opts.css !== false && !insertedCss) {

@@ -136,7 +136,7 @@ var elem = yarn(file)
 ---------------------
 
 Return a container div with class `_container` around the html fragment at
-`file`.
+`file`. If `file` doesn't exist in the bundle, returns `undefined`.
 
 The html fragment is transformed with a prefix value for all classes and IDs, so
 to get at the class and ID names from original file, use the wrapped
