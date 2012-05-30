@@ -8,8 +8,8 @@ domready(function () {
     
     var ri = 1;
     setInterval(function () {
-        r.body(r.body() + Array(ri++).join('!'));
-    }, 250);
+        r.body(r.body() + '!');
+    }, 1000);
     
     var d = widget('dinosaurs');
     d.body('in the ground');
@@ -17,6 +17,6 @@ domready(function () {
     
     var di = 1;
     setInterval(function () {
-        r.body(r.body() + Array(di++).join('.'));
-    }, 250);
+        d.body(d.body() + '.');
+    }, 1000);
 });
