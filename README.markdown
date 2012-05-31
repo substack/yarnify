@@ -115,12 +115,15 @@ usage
 =====
 
 ```
-Usage: yarnify [directory] OPTIONS
+Usage:
 
-Generate a yarn output bundle from all the html and css files in [directory].
+  yarnify knit [files or directories] OPTIONS
+  
+    Bundle css and html files and directories into a single javascript file.
+    
+    OPTIONS
+      -o output file or '-' (default)
 
-  OPTIONS
-    -o output file or '-' (default)
 ```
 
 methods

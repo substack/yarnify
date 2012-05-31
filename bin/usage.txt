@@ -1,0 +1,9 @@
+Usage:
+
+  yarnify knit [files or directories] OPTIONS
+  
+    Bundle css and html files and directories into a single javascript file.
+    
+    OPTIONS
+      -o output file or '-' (default)
+

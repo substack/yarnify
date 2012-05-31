@@ -7,8 +7,11 @@ var argv = require('optimist').argv;
 var cmd = argv._[0];
 
 if (cmd === 'knit') {
-    var dir = argv._[1] || process.cwd();
-    yarnify.knit(dir, function (err, src) {
+    var dirs = argv._.slice(1);
+    if (dirs.length === 0)  dirs = [ process.cwd() ];
+    
+    var opts = { base : argv.base };
+    yarnify.knit(dirs, opts, function (err, src) {
         var outfile = argv.o || argv.outfile || '-';
         if (outfile === '-') {
             console.log(src);
@@ -17,5 +20,7 @@ if (cmd === 'knit') {
     });
 }
 else {
-    console.error('Usage: yarnify knit [directory] [-o outfile.js]');
+    var s = fs.createReadStream(__dirname + '/usage.txt');
+    s.pipe(process.stderr);
+    s.on('end', function () { process.exit(1) });
 }
