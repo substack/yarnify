@@ -1,12 +1,23 @@
-module.exports = function (prefix, elem) {
+module.exports = function withPrefix (prefix, elem) {
+    function wrap (e) {
+        if (e && e.length) {
+            for (var i = 0; i < e.length; i++) {
+                e[i] = withPrefix(prefix, e[i]);
+            }
+            return e;
+        }
+        else if (!e) return e
+        else return withPrefix(prefix, e)
+    }
+    
     elem.pre = prefix;
     
     elem.getElementById = function (id) {
-        return document.getElementById(prefix + id);
+        return wrap(document.getElementById(prefix + id));
     };
     
     elem.getElementsByClassName = function (name) {
-        return document.getElementsByClassName(prefix + name);
+        return wrap(document.getElementsByClassName(prefix + name));
     };
     
     var querySelector = elem.querySelector;
@@ -14,7 +25,7 @@ module.exports = function (prefix, elem) {
         var s = sel.replace(/([.#])([^.\s])/g, function (_, op, c) {
             return op + prefix + c;
         });
-        return querySelector.call(this, s);
+        return wrap(querySelector.call(this, s));
     };
     
     var querySelectorAll = elem.querySelectorAll;
@@ -22,7 +33,7 @@ module.exports = function (prefix, elem) {
         var s = sel.replace(/([.#])([^.\s])/g, function (_, op, c) {
             return op + prefix + c;
         });
-        return querySelectorAll.call(this, s);
+        return wrap(querySelectorAll.call(this, s));
     };
     
     return elem;
