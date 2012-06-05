@@ -1,13 +1,14 @@
 module.exports = function withPrefix (prefix, elem) {
     function wrap (e) {
+        if (!e) return e
         if (e && e.length) {
             for (var i = 0; i < e.length; i++) {
                 e[i] = withPrefix(prefix, e[i]);
             }
-            return e;
         }
-        else if (!e) return e
-        else return withPrefix(prefix, e)
+        if (e.pre === prefix) return e;
+        
+        return withPrefix(prefix, e);
     }
     
     elem.pre = prefix;
