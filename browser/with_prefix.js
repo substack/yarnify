@@ -21,7 +21,7 @@ module.exports = function withPrefix (prefix, elem) {
         return wrap(document.getElementsByClassName(prefix + name));
     };
     
-    var querySelector = elem.querySelector;
+    var querySelector = elem.constructor.prototype.querySelector;
     elem.querySelector = function (sel) {
         var s = sel.replace(/([.#])([^.\s])/g, function (_, op, c) {
             return op + prefix + c;
@@ -29,7 +29,7 @@ module.exports = function withPrefix (prefix, elem) {
         return wrap(querySelector.call(this, s));
     };
     
-    var querySelectorAll = elem.querySelectorAll;
+    var querySelectorAll = elem.constructor.prototype.querySelectorAll;
     elem.querySelectorAll = function (sel) {
         var s = sel.replace(/([.#])([^.\s])/g, function (_, op, c) {
             return op + prefix + c;
