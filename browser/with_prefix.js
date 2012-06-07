@@ -14,10 +14,12 @@ module.exports = function withPrefix (prefix, elem) {
     elem.pre = prefix;
     
     elem.getElementById = function (id) {
+        // deprecated, just use querySelector
         return wrap(document.getElementById(prefix + id));
     };
     
     elem.getElementsByClassName = function (name) {
+        // deprecated, just use querySelector
         return wrap(document.getElementsByClassName(prefix + name));
     };
     

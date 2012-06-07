@@ -143,8 +143,7 @@ Return a container div with class `_container` around the html fragment at
 
 The html fragment is transformed with a prefix value for all classes and IDs, so
 to get at the class and ID names from original file, use the wrapped
-`elem.querySelector()`, `elem.querySelectorAll()`, `elem.getElementById()`,
-or `elem.getElementsByClassName()` methods documented below.
+query selector methods documented below.
 
 You can pass the `elem` to jquery or whichever other DOM manipulation
 toolkit you please, just be aware that the css selector wrapping in those
@@ -167,23 +166,6 @@ Like the standard
 [Element.querySelectorAll](https://developer.mozilla.org/en/DOM/Element.querySelectorAll)
 except that classes and IDs will have the document prefix inserted
 automatically into the selector.
-
-The returned elements will be wrapped with prefix-aware selectors.
-
-elem.getElementById(id)
------------------------
-
-Look up an element by its `id` from the original html before prefixing.
-
-This function would normally be available at the `document`
-but this is a handy place to look up an id with the prefix value prepended.
-
-The returned element will be wrapped with prefix-aware selectors.
-
-elem.getElementsByClassName(name)
----------------------------------
-
-Look up elements by their `class` from the original html before prefixing.
 
 The returned elements will be wrapped with prefix-aware selectors.
 
