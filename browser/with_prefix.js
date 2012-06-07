@@ -37,5 +37,28 @@ module.exports = function withPrefix (prefix, elem) {
         return wrap(querySelectorAll.call(this, s));
     };
     
+    elem.addClass = function (c) {
+        var ps = elem.className.split(/\s+/);
+        if (ps.indexOf(prefix + c) < 0) {
+            ps.push(prefix + c);
+            elem.className = ps.join(' ');
+        }
+    };
+    
+    elem.removeClass = function (c) {
+        var ps = elem.className.split(/\s+/);
+        var ix = ps.indexOf(prefix + c);
+        if (ix >= 0) {
+            ps.splice(ix, 1);
+            elem.className = ps.join(' ');
+        }
+    };
+    
+    elem.hasClass = function (c) {
+        var ps = elem.className.split(/\s+/);
+        var ix = ps.indexOf(prefix + c) >= 0;
+        return ix >= 0;
+    };
+    
     return elem;
 };
