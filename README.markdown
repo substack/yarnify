@@ -187,6 +187,30 @@ Look up elements by their `class` from the original html before prefixing.
 
 The returned elements will be wrapped with prefix-aware selectors.
 
+elem.addClass(name)
+-------------------
+
+Add an unprefixed class name string `name`.
+
+`name` will be prefixed and added to the `elem.className` if the element doesn't
+already have the class.
+
+elem.removeClass(name)
+----------------------
+
+Remove an unprefixed class name string `name`.
+
+`name` will be prefixed and removed from the `elem.className` if the element has
+the class.
+
+elem.hasClass(name)
+-------------------
+
+Return whether the element has the unprefixed class name string `name` in its
+`elem.className`.
+
+`name` will be prefixed before checking for class membership.
+
 attributes
 ==========
 
