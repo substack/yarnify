@@ -77,7 +77,6 @@ function knit (prefix, dir, cb) {
     });
 };
 
-var prelude = fs.readFileSync(__dirname + '/browser.js', 'utf8');
 function withFiles (prefix, files, cb) {
     var src = 'module.exports = require("yarnify")('
         + JSON.stringify(prefix)
