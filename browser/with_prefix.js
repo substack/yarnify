@@ -6,12 +6,12 @@ module.exports = function withPrefix (prefix, elem) {
                 e[i] = withPrefix(prefix, e[i]);
             }
         }
-        if (e.pre === prefix) return e;
+        if (e._prefix === prefix) return e;
         
         return withPrefix(prefix, e);
     }
     
-    elem.pre = prefix;
+    elem._prefix = prefix;
     
     var querySelector = elem.constructor.prototype.querySelector;
     elem.querySelector = function (sel) {
