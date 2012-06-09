@@ -1,5 +1,5 @@
 var test = require('tap').test;
-var yarnify = require('yarnify');
+var yarnify = require('../');
 
 var mkdirp = require('mkdirp');
 mkdirp.sync(__dirname + '/widget/empty');
