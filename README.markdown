@@ -9,6 +9,8 @@ All the classes, IDs, and css selectors in the knitted files are transformed
 with a prefix value to ensure that no conflicts with existing class names will
 occur when deploying a widget into an unknown environment.
 
+[![build status](https://secure.travis-ci.org/substack/yarnify.png)](http://travis-ci.org/substack/yarnify)
+
 example
 =======
 
