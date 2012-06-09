@@ -41,7 +41,11 @@ exports.knit = function (dirs_, opts, cb) {
                     return acc;
                 }, {})
             ;
-            withFiles(prefix, normFiles, cb);
+            cb(null, {
+                prefix : prefix,
+                files : normFiles,
+                source : withFiles(prefix, normFiles),
+            });
         });
     });
 };
@@ -77,11 +81,10 @@ function knit (prefix, dir, cb) {
     });
 };
 
-function withFiles (prefix, files, cb) {
-    var src = 'module.exports = require("yarnify")('
+function withFiles (prefix, files) {
+    return 'module.exports = require("yarnify")('
         + JSON.stringify(prefix)
         + ','
         + JSON.stringify(files)
     + ');\n';
-    cb(null, src);
 }

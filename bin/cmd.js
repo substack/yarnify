@@ -11,12 +11,12 @@ if (cmd === 'knit') {
     if (dirs.length === 0)  dirs = [ process.cwd() ];
     
     var opts = { base : argv.base };
-    yarnify.knit(dirs, opts, function (err, src) {
+    yarnify.knit(dirs, opts, function (err, y) {
         var outfile = argv.o || argv.outfile || '-';
         if (outfile === '-') {
-            console.log(src);
+            console.log(y.source);
         }
-        else fs.writeFile(outfile, src);
+        else fs.writeFile(outfile, y.source);
     });
 }
 else {
