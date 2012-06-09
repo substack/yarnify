@@ -78,6 +78,7 @@ function knit (prefix, dir, cb) {
     
     finder.on('end', function () {
         done = true;
+        if (done && pending === 0) cb(null, files);
     });
 };
 
