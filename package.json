@@ -19,6 +19,7 @@
     },
     "devDependencies" : {
         "tap" : "~0.2.5",
+        "mkdirp" : "~0.3.3",
         "domready" : "~0.2.11",
         "browserify" : "~1.10.15"
     },
