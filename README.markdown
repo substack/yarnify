@@ -196,8 +196,8 @@ Return whether the element has the unprefixed class name string `name` in its
 attributes
 ==========
 
-elem._prefix
-------------
+yarn.prefix, elem._prefix
+-------------------------
 
 The prefix prepended to all class and id values.
 

@@ -32,6 +32,8 @@ module.exports = function (prefix, files) {
         return elem;
     };
     
+    y.prefix = prefix;
+    
     y.parse = function (src) {
         return parse(prefix, src);
     };
