@@ -14,7 +14,7 @@ test('api mode', function (t) {
         t.ok(/^_(\w+)-$/.test(bundle.prefix));
         t.same(
             Object.keys(bundle.files).sort(),
-            [ '/css/a.css', '/css/b.css', '/html/rawr.html' ]
+            [ '/css/a.css', '/css/b.css', '/rawr.html' ]
         );
         var matches = bundle.source.match(
             new RegExp(bundle.prefix.slice(0,-1), 'g')
