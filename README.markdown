@@ -30,10 +30,11 @@ Just hack up a widget/beep.html:
 </div>
 ```
 
-and write some css for your widget, any filename will do.
+and write some css for your widget.
 
 The class names you pick here will be completely local to your widget so don't
-worry about naming.
+worry about naming. Further, the rules in the css files themselves are
+completely local and are bound explicitly to elements.
 
 ``` css
 .beep {
@@ -65,7 +66,7 @@ now just `require('./yarn')` in a widget/index.js:
 var yarn = require('./yarn');
 
 module.exports = function (title) {
-    var elem = yarn('beep.html');
+    var elem = yarn('beep.html', [ 'beep.css' ]);
     elem.querySelector('.title').textContent = title;
     
     return {
@@ -92,7 +93,7 @@ domready(function () {
 });
 ```
 
-Install domready, a local yarnify, and browserify everything up:
+Install domready and yarnify, then browserify everything up:
 
 ```
 $ npm install domready yarnify
@@ -139,11 +140,14 @@ These are the methods you can call on generated yarn bundles.
 var yarn = require('./yarn')
 ```
 
-var elem = yarn(file)
----------------------
+var elem = yarn(file, cssFiles=[])
+----------------------------------
 
 Return a container div with class `_container` around the html fragment at
 `file`. If `file` doesn't exist in the bundle, returns `undefined`.
+
+For each of the css files in `cssFiles`, apply the css  file contents to the
+resulting element.
 
 The html fragment is transformed with a prefix value for all classes and IDs, so
 to get at the class and ID names from original file, use the wrapped
