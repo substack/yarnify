@@ -56,7 +56,7 @@ worry about naming.
 then bundle all the html in `widget/` into `widget/yarn.js`:
 
 ```
-$ yarnify knit widget -o widget/yarn.js
+$ yarnify widget -o widget/yarn.js
 ```
 
 now just `require('./yarn')` in a widget/index.js:
@@ -121,7 +121,7 @@ usage
 ```
 Usage:
 
-  yarnify knit [files or directories] OPTIONS
+  yarnify [files or directories] OPTIONS
   
     Bundle css and html files and directories into a single javascript file.
     
@@ -208,11 +208,7 @@ The prefix prepended to all class and id values.
 todo
 ====
 
-* knit standalone static assets like images into a target directory:
-
-```
-cp -r $src/static $dst
-```
+* knit images into the css? and a tool to cut them out again
 
 install
 =======

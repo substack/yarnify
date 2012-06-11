@@ -1,6 +1,6 @@
 Usage:
 
-  yarnify knit [files or directories] OPTIONS
+  yarnify [files or directories] OPTIONS
   
     Bundle css and html files and directories into a single javascript file.
     

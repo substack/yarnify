@@ -1,13 +1,15 @@
 #!/bin/bash
 
-if test -z "$BROWSER"; then
-    BROWSER=firefox
+BROWSER=xdg-open
+if test -z "$(which $BROWSER)"; then
+    BROWSER=open
 fi
 
 if test "$1" == "view"; then
-    $BROWSER ./index.html
+    $BROWSER ./many/index.html
+    $BROWSER ./simple/index.html
 else
-    ../../bin/cmd.js knit widget -o widget/yarn.js
+    ../../bin/cmd.js widget -o widget/yarn.js
     if test \! -d node_modules; then \
         mkdir node_modules; \
         ln -s ${PWD}/../.. node_modules/yarnify; \

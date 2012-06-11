@@ -1,6 +1,6 @@
 {
     "name" : "yarnify",
-    "version" : "0.3.0",
+    "version" : "0.4.0",
     "description" : "knit together html, css, and javascript into reusable bundles",
     "main" : "index.js",
     "browserify" : "browser.js",
