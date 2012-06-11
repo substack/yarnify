@@ -16,7 +16,7 @@ exports.knit = function (dirs_, opts, cb) {
     var files = {};
     var pending = dirs.length;
     
-    var prefix = generatePrefix();
+    var prefix = '_' + Math.random().toString(16).slice(2) + '-';
     
     dirs.forEach(function (dir_) {
         var dir = path.resolve(dir_);
@@ -71,10 +71,11 @@ function knit (prefix, dir, cb) {
             if (err) return;
             
             if (/\.css$/.test(file)) {
-                var cprefix = generatePrefix();
+                var cprefix = Math.random().toString(16).slice(2);
                 var opts = {
-                    prefix : cprefix,
-                    elementClass : cprefix.slice(0,-1),
+                    prefix : prefix,
+                    parentClass : prefix + cprefix,
+                    elementClass : prefix.slice(0,-1),
                 };
                 files[file] = [ cprefix, insertPrefix(opts, src) ];
             }
@@ -95,8 +96,4 @@ function withFiles (prefix, files) {
         + ','
         + JSON.stringify(files)
     + ');\n';
-}
-
-function generatePrefix () {
-    return '_' + Math.random().toString(16).slice(2) + '-';
 }

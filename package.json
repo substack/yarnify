@@ -14,7 +14,7 @@
     "dependencies" : {
         "findit" : "~0.1.2",
         "optimist" : "~0.3.4",
-        "css-prefix" : "~0.0.1",
+        "css-prefix" : "~0.0.2",
         "commondir" : "~0.0.1"
     },
     "devDependencies" : {

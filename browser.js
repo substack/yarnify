@@ -8,31 +8,50 @@ var objectKeys = Object.keys || function (obj) {
     return keys;
 };
 
+var isArray = Array.isArray || function (xs) {
+    return Object.prototype.toString.call(xs) === '[object Array]';
+};
+
 module.exports = function (prefix, files) {
-    var cssFiles = [];
     var elems = {};
-    objectKeys(files).forEach(function (file) {
-        if (/\.css$/i.test(file)) {
-            cssFiles.push(files[file]); 
-        }
-        else {
-            elems[file] = parse(prefix, files[file]);
-        }
-    });
-    var css = document.createElement('style');
-    var cssText = document.createTextNode(cssFiles.join('\n'));
-    css.appendChild(cssText);
-    var insertedCss = false;
+    var cssElement = document.createElement('style');
     
-    var y = function (file_, opts) {
-        if (!opts) opts = {};
+    (function () {
+        var sources = [];
+        
+        var keys = objectKeys(files);
+        for (var i = 0; i < keys.length; i++) {
+            var key = keys[i];
+            if (/\.css$/i.test(key)) {
+                sources.push(files[key][1]); 
+            }
+            else {
+                elems[key] = parse(prefix, files[key]);
+            }
+        }
+        
+        var cssText = document.createTextNode(sources.join('\n'));
+        cssElement.appendChild(cssText);
+    })();
+    
+    var insertedCss = false;
+    var y = function (file_, cssFiles) {
         var file = path.resolve('/', file_);
         if (!elems[file]) return undefined;
-        
         var elem = withPrefix(prefix, elems[file].cloneNode(true));
         
-        if (opts.css !== false && !insertedCss) {
-            document.head.appendChild(css);
+        if (!cssFiles) cssFiles = [];
+        if (!isArray(cssFiles)) cssFiles = [ cssFiles ];
+        for (var i = 0; i < cssFiles.length; i++) {
+            var cssFile = path.resolve('/', cssFiles[i])
+            if (files[cssFile]) {
+                var cssPrefix = files[cssFile][0];
+                elem.addClass(cssPrefix);
+            }
+        }
+        
+        if (!insertedCss) {
+            document.head.appendChild(cssElement);
             insertedCss = true;
         }
         return elem;

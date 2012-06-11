@@ -1,13 +1,13 @@
 #!/bin/bash
 
-BROWSER=xdg-open
+WEB_BROWSER=xdg-open
 if test -z "$(which $BROWSER)"; then
-    BROWSER=open
+    WEB_BROWSER=open
 fi
 
 if test "$1" == "view"; then
-    $BROWSER ./many/index.html
-    $BROWSER ./simple/index.html
+    $WEB_BROWSER many/index.html
+    $WEB_BROWSER simple/index.html
 else
     ../../bin/cmd.js widget -o widget/yarn.js
     if test \! -d node_modules; then \
