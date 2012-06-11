@@ -29,13 +29,27 @@ exports.knit = function (dirs_, opts, cb) {
             });
             if (--pending > 0) return;
             
-            var basedir = opts.base || commondir(Object.keys(files)) + '/';
+            var basedir = {
+                html : opts.base || commondir(
+                    Object.keys(files)
+                        .filter(function (x) { return /\.html$/.test(x) })
+                        .map(path.dirname)
+                    ) + '/'
+                ,
+                css : opts.base || commondir(
+                        Object.keys(files).map(path.dirname)
+                    ) + '/'
+                ,
+            };
             
             var normFiles = Object.keys(files)
                 .reduce(function (acc, file_) {
+                    var ext = file_.match(/\.([^.]+)$/)[1];
+                    var base = basedir[ext];
+                    
                     var file = file_;
-                    if (file_.slice(0, basedir.length) === basedir) {
-                        file = file_.slice(basedir.length - 1);
+                    if (file_.slice(0, base.length) === base) {
+                        file = file_.slice(base.length - 1);
                     }
                     acc[file] = files[file_];
                     return acc;
