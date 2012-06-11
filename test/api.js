@@ -14,11 +14,11 @@ test('api mode', function (t) {
         t.ok(/^_(\w+)-$/.test(bundle.prefix));
         t.same(
             Object.keys(bundle.files).sort(),
-            [ '/css/a.css', '/css/b.css', '/rawr.html' ]
+            [ '/a.css', '/b.css', '/rawr.html' ]
         );
-        var matches = bundle.source.match(
+        t.ok(
             new RegExp(bundle.prefix.slice(0,-1), 'g')
+            .test(bundle.source)
         );
-        t.equal(matches.length, 7);
     });
 });

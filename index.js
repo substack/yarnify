@@ -3,7 +3,7 @@ var path = require('path');
 
 var findit = require('findit');
 var insertPrefix = require('css-prefix');
-var commondir = require('commondir');
+var rebase = require('./lib/rebase');
 
 exports.knit = function (dirs_, opts, cb) {
     var dirs = Array.isArray(dirs_) ? dirs_ : [ dirs_ ];
@@ -16,7 +16,7 @@ exports.knit = function (dirs_, opts, cb) {
     var files = {};
     var pending = dirs.length;
     
-    var prefix = '_' + Math.random().toString(16).slice(2) + '-';
+    var prefix = generatePrefix();
     
     dirs.forEach(function (dir_) {
         var dir = path.resolve(dir_);
@@ -30,16 +30,8 @@ exports.knit = function (dirs_, opts, cb) {
             if (--pending > 0) return;
             
             var basedir = {
-                html : opts.base || commondir(
-                    Object.keys(files)
-                        .filter(function (x) { return /\.html$/.test(x) })
-                        .map(path.dirname)
-                    ) + '/'
-                ,
-                css : opts.base || commondir(
-                        Object.keys(files).map(path.dirname)
-                    ) + '/'
-                ,
+                html : opts.base || rebase(files, /\.html$/),
+                css : opts.base || rebase(files, /\.css$/),
             };
             
             var normFiles = Object.keys(files)
@@ -79,11 +71,12 @@ function knit (prefix, dir, cb) {
             if (err) return;
             
             if (/\.css$/.test(file)) {
+                var cprefix = generatePrefix();
                 var opts = {
-                    prefix : prefix,
-                    elementClass : prefix.slice(0,-1),
+                    prefix : cprefix,
+                    elementClass : cprefix.slice(0,-1),
                 };
-                files[file] = insertPrefix(opts, src);
+                files[file] = [ cprefix, insertPrefix(opts, src) ];
             }
             else files[file] = src;
             if (done && pending === 0) cb(null, files);
@@ -102,4 +95,8 @@ function withFiles (prefix, files) {
         + ','
         + JSON.stringify(files)
     + ');\n';
+}
+
+function generatePrefix () {
+    return '_' + Math.random().toString(16).slice(2) + '-';
 }
