@@ -11,6 +11,8 @@ occur when deploying a widget into an unknown environment.
 
 [![build status](https://secure.travis-ci.org/substack/yarnify.png)](http://travis-ci.org/substack/yarnify)
 
+![yarnify](http://substack.net/images/yarnify.png)
+
 example
 =======
 
