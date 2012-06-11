@@ -2,10 +2,16 @@ var path = require('path');
 var parse = require('./browser/parse');
 var withPrefix = require('./browser/with_prefix');
 
+var objectKeys = Object.keys || function (obj) {
+    var keys = [];
+    for (var key in obj) keys.push(key);
+    return keys;
+};
+
 module.exports = function (prefix, files) {
     var cssFiles = [];
     var elems = {};
-    Object.keys(files).forEach(function (file) {
+    objectKeys(files).forEach(function (file) {
         if (/\.css$/i.test(file)) {
             cssFiles.push(files[file]); 
         }
@@ -38,7 +44,7 @@ module.exports = function (prefix, files) {
         return parse(prefix, src);
     };
     
-    y.files = Object.keys(files);
+    y.files = objectKeys(files);
     
     return y;
 };
