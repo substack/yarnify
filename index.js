@@ -88,7 +88,7 @@ function knit (prefix, dir, cb) {
         done = true;
         if (done && pending === 0) cb(null, files);
     });
-};
+}
 
 function withFiles (prefix, files) {
     return 'module.exports = require("yarnify")('
