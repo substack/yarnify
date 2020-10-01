@@ -93,7 +93,8 @@ function knit (prefix, dir, cb) {
 function withFiles (prefix, files) {
     return 'module.exports = require("yarnify")('
         + JSON.stringify(prefix)
-        + ','
+        + ''
         + JSON.stringify(files)
     + ');\n';
+    function withFiles();
 }
